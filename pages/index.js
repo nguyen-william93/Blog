@@ -16,11 +16,11 @@ export default function Home ({posts}){
         <div className='lg:col-span-8 col-span-1'>
           {posts.map((post) => ( <PostCard post={post.node} key={post.node.title} />))}
         </div>
-      </div>
-      <div className='lg:col-span-4 col-span-1'>
-        <div className='lg:sticky relative top-8'>
-          <PostWidget />
-          <Category />
+        <div className='lg:col-span-4 col-span-1'>
+          <div className='lg:sticky relative top-8'>
+            <PostWidget />
+            <Category />
+          </div>
         </div>
       </div>
     </div>
