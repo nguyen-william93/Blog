@@ -5,7 +5,7 @@ import {PostDetail, Category, PostWidget, Author, Comments, CommentsForm} from '
 
 const PostDetails = ({ post }) => {
 
-    console.log(post)
+    
     return (
         <div className='container mx-auto px-10 mb-8'>
             <div className='grid grid-cols-1 lg:grid-cols-12 gap-12'>
@@ -29,7 +29,7 @@ const PostDetails = ({ post }) => {
 export default PostDetails
 
 export async function getStaticProps({ params }) {
-    const data = getPostDetails(params.slug)
+    const data = await getPostDetails(params.slug)
     
     return {
       props: { post: data }
@@ -38,11 +38,9 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
     const posts = await getPosts();
-    console.log(posts.map(({node: {slug}}) => ({params:{slug}})))
 
     return {
-        // paths: posts.map(({node: {slug}}) => ({params:{slug}})),
-        paths: [{params: {slug: 'react-testing'}}],
-        falback: true
+        paths: posts.map(({node: {slug}}) => ({params:{slug}})),
+        fallback: true
     }
 }
