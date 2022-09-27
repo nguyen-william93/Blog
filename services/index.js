@@ -125,3 +125,16 @@ export const getCategories = async () => {
     const result = await request(graphAPI, query)
     return result.categories
 }
+
+export const submitComment = async (obj) => {
+    console.log(obj)
+    const result = await fetch('/api/comments', {
+        method: "POST",
+        headers: {
+            'Content-type': "application/json"
+        },
+        body: JSON.stringify(obj),
+    });
+
+    return result.json()
+}
